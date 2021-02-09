@@ -14,17 +14,17 @@ def update_status(jobs):
     return status
 
 
-def get_curves_async(curves, MAX_POOLS, each_request_timeout):
+def get_names_async(names, MAX_POOLS, each_request_timeout):
     end_item = MAX_POOLS
     start_item = 0
     total_processed_items = []
-    while start_item <= len(curves) - 1:
+    while start_item <= len(names) - 1:
         jobs = {}
-        for current_index, curve in enumerate(curves[start_item: end_item]):
-            process = Process(target=get_name, args=(curve,))
+        for current_index, name in enumerate(names[start_item: end_item]):
+            process = Process(target=get_name, args=(name,))
             process.start()
-            total_processed_items.append(curve)
-            jobs[curve] = process
+            total_processed_items.append(name)
+            jobs[name] = process
 
         update_status(jobs)
         healthcheck_time = 0
@@ -43,4 +43,4 @@ def get_curves_async(curves, MAX_POOLS, each_request_timeout):
 if __name__ == '__main__':
     names = ['Gabriel', "Caio", "Adriano", "Jagunço", "Marcelo", "Jonas", "Ana", "Samuel", "Messias"]
     jobs = []
-    get_curves_async(names, 5, 300)
+    get_names_async(names, 5, 300)
