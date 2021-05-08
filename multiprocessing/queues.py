@@ -20,7 +20,7 @@ def get_names_async(names, MAX_POOLS, each_request_timeout):
     total_processed_items = []
     while start_item <= len(names) - 1:
         jobs = {}
-        for current_index, name in enumerate(names[start_item: end_item]):
+        for name in enumerate(names[start_item: end_item]):
             process = Process(target=get_name, args=(name,))
             process.start()
             total_processed_items.append(name)

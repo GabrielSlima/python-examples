@@ -22,7 +22,7 @@ def get_names_async(names, MAX_POOLS, each_request_timeout):
     processed_names = Queue()
     while start_item <= len(names) - 1:
         jobs = {}
-        for current_index, name in enumerate(names[start_item: end_item]):
+        for name in enumerate(names[start_item: end_item]):
             process = Process(target=get_name, args=(name, processed_names))
             process.start()
             process.join()
