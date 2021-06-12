@@ -44,7 +44,7 @@ lambo.max_wheels(2)
 print(lambo.wheels()) #2
 print(Car.default_amount_of_wheels()) #4
 
-lambo.change_class_wheels(56) # DOES NOTHIG TO THE OBJECT OR CLASS
+lambo.change_class_wheels(56) # DOES NOTHING TO THE OBJECT OR CLASS
 print(Car.default_amount_of_wheels()) #4
 print(lambo.wheels()) #2
 
