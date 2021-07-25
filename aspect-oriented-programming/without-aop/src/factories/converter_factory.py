@@ -11,5 +11,5 @@ class ConverterFactory:
         if not converter:
             raise Exception("Convert with name {} not Found".format(name))
 
-        return converter
+        return converter()
 

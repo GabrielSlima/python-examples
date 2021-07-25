@@ -12,6 +12,14 @@ _logger = LoggerService()
 
 @app.route("/video_to_gif", methods=["POST"])
 def convert():
+    _logger.log(
+        "Request received from => {} - payload size: {}".format(
+            request.remote_addr,
+            "{} bytes".format(len(request.data))
+        ),
+        "info"
+    )
+
     _CONVERTER_NAME = "gif_converter"
 
     _converter = ConverterFactory.create_converter_by(_CONVERTER_NAME)
@@ -23,10 +31,10 @@ def convert():
         _quota_service
     )
 
-    return send_file(
-        _converter_service.convert_from(request.data),
-        attachment_filename="video_to_gif.gif"
-    )
+    _logger.log("Converting {}".format("{} bytes".format(len(request.data))), "info")
+    gif = _converter_service.convert_from(request.data)
+    _logger.log("{} converted to Gif".format("{} bytes".format(len(request.data))), "info")
+    return send_file(gif, attachment_filename="video_to_gif.gif")
 
 
 if __name__ == "__main__":

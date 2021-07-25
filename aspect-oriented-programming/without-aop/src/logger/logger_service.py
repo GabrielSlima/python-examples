@@ -14,7 +14,8 @@ class LoggerService:
             "info": logging.info,
             "debug": logging.debug,
             "critical": logging.critical,
-            "error": logging.error
+            "error": logging.error,
+            "warning": logging.warning
         }
         _logger = loggers_by_level.get(level)
         if not _logger:
