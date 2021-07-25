@@ -1,0 +1,1 @@
+class QuotaService: pass
