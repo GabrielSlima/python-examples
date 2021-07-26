@@ -1,11 +1,11 @@
 from src.aspects.loggers.logger_service import LoggerService
-from flask import request
 from functools import wraps
+from flask import request
 
-_logger = LoggerService()
 
+def log_stream_incoming_request(request_handler):
+    _logger = LoggerService("request")
 
-def stream_incoming_request(request_handler):
     @wraps(request_handler)
     def _request_handler(*args, **kwargs):
         _logger.log(

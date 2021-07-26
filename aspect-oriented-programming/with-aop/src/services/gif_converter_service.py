@@ -1,4 +1,4 @@
-from src.aspects.loggers.converter_logger import stream_conversion_process
+from src.aspects.loggers.converter import log_stream_conversion_process
 
 
 class GifConverterService:
@@ -7,7 +7,7 @@ class GifConverterService:
         self.quota_service = quota_service
         self.converter = converter
 
-    @stream_conversion_process
+    @log_stream_conversion_process
     def convert_from(self, video):
         self.converter.save(video)
         return self.converter.convert_from(video)
